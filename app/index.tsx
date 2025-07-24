@@ -6,6 +6,9 @@ import { ImageBackground, StyleSheet, View } from "react-native";
 import { Button, Text, TextInput } from "react-native-paper";
 
 export default function Index() {
+
+
+
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -26,19 +29,27 @@ export default function Index() {
     });
 
     if (response.ok) {
-      const data = await response.json();
-      console.log("Login successful:", data);
-      // 这里可以处理登录成功后的逻辑，比如导航到其他页面
-      console.log("Login successful:", data.uid, data.username, data.isActived);
-      useTokenStore.getState().setToken(data.secToken);
-      useTokenStore.getState().setInfo(data.username, data.uid, data.isActived);
+      try {
 
-      //! 验证usetoken已经存储到了值的
-      console.log("Stored Token:", useTokenStore.getState().getToken());
-      console.log("Stored User Info:", useTokenStore.getState().getInfo());
+        const data = await response.json();
+        console.log("Login successful:", data);
+        // 这里可以处理登录成功后的逻辑，比如导航到其他页面
+        console.log("Login successful:", data.uid, data.username, data.isActived);
+        useTokenStore.getState().setToken(data.secToken);
+        useTokenStore.getState().setInfo(data.username, data.uid, data.isActived);
 
-      // 导航到主页或其他页面
-      router.replace("/home/page1");
+        //! 验证usetoken已经存储到了值的
+        console.log("Stored Token:", useTokenStore.getState().getToken());
+        console.log("Stored User Info:", useTokenStore.getState().getInfo());
+
+        // 导航到主页或其他页面
+        router.replace("/home/scrapy");
+      } catch (error) {
+        console.error("Error parsing response:", error);
+        //! todo 刷新页面
+
+      }
+
     } else {
       console.error("Login failed:", response);
       console.error("Login failed:", response.statusText);

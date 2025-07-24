@@ -1,10 +1,10 @@
 import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 
-export default function Page1() {
+export default function Shop() {
     return (
         <View style={ styles.container }>
-            <Text variant="headlineMedium">这是首页内容</Text>
+            <Text variant="headlineMedium">这是店铺内容</Text>
         </View>
     );
 }

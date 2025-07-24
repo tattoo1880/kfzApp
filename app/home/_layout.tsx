@@ -1,38 +1,47 @@
 import { MaterialIcons } from '@expo/vector-icons';
-import { Tabs } from "expo-router";
+import { Tabs, useNavigation } from "expo-router";
+import { useLayoutEffect } from "react";
+
 
 export default function HomeLayout() {
+    const navigation = useNavigation();
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            // headerShown: false,
+            title: "上书宝",
+        });
+    }, [navigation]);
     return (
         <Tabs
             screenOptions={ {
-                tabBarActiveTintColor: 'green',
+                tabBarActiveTintColor: 'skyblue',
                 tabBarInactiveTintColor: 'gray',
                 headerShown: false,
             } }
         >
             <Tabs.Screen
-                name="page1"
+                name="scrapy"
                 options={ {
-                    title: "首页",
+                    title: "爬虫",
                     tabBarIcon: ({ color, size }) => <MaterialIcons name="home" size={ size } color={ color } />,
                 } }
             />
             <Tabs.Screen
-                name="page2"
+                name="task"
                 options={ {
-                    title: "发现",
+                    title: "任务",
                     tabBarIcon: ({ color, size }) => <MaterialIcons name="search" size={ size } color={ color } />,
                 } }
             />
             <Tabs.Screen
-                name="page3"
+                name="shop"
                 options={ {
-                    title: "消息",
+                    title: "店铺",
                     tabBarIcon: ({ color, size }) => <MaterialIcons name="message" size={ size } color={ color } />,
                 } }
             />
             <Tabs.Screen
-                name="page4"
+                name="profile"
                 options={ {
                     title: "我的",
                     tabBarIcon: ({ color, size }) => <MaterialIcons name="person" size={ size } color={ color } />,
