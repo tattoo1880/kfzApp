@@ -10,5 +10,5 @@
 
 ### 1. INSTALL
 ```shell
-wget https://ex.purecode.dpdns.org/videos/kfzApp.apk
+wget 
 ```
