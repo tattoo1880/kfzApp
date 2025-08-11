@@ -2,7 +2,7 @@
 import { useTokenStore } from "@/store/useTokenStore";
 import { useNavigation, useRouter } from "expo-router";
 import { useLayoutEffect, useState } from "react";
-import { ImageBackground, StyleSheet, View } from "react-native";
+import { Alert, ImageBackground, StyleSheet, View } from "react-native";
 import { Button, Text, TextInput } from "react-native-paper";
 
 export default function Index() {
@@ -53,6 +53,7 @@ export default function Index() {
     } else {
       console.error("Login failed:", response);
       console.error("Login failed:", response.statusText);
+      Alert.alert("用户名或者密码错误");
       // 这里可以处理登录失败的逻辑，比如显示错误消息
     }
   };
