@@ -83,20 +83,30 @@ export default function Scrapy() {
 
 
 
-    const handleSearch = async (kw: string,shop_cid:string) => {
+    const handleSearch = async (kw: string, shop_cid: string) => {
         console.log("Searching for:", kw);
         const uid = useTokenStore.getState().getInfo().uid;
         console.log("User ID:", uid);
+        console.log("shopcid:", shop_cid);
 
         try {
             setLoading(true);
             console.log("Sending request to API...");
 
-            const response = await axios.post(`${API_URL}/api/newgetallinfo`,
+            // 创建一个列表,将kw添加成第一个元素
+            const shopIds = [kw];
+
+            console.log("POST payload:", {
+                "shop_id": shopIds,
+                "user_id": uid,
+                "shop_cid": String(shop_cid),
+            });
+
+            const response = await axios.post(`${API_URL}/gogood/makedd`,
                 {
-                    shopid: kw,
-                    uid: uid,
-                    shopcid: shop_cid, 
+                    "shop_id": shopIds,
+                    "user_id": uid,
+                    "shop_cid": String(shop_cid),
                 },
                 {
                     headers: {
